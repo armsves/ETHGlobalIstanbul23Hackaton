@@ -1,1 +1,1 @@
-# ETHGlobalIstanbul23Hackaton
+# ETH Global Istanbul23 Hackaton
