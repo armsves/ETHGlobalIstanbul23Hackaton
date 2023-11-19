@@ -12,4 +12,6 @@ It allows users to send messages anonymously, using only their wallet addresses,
 ## Hackathon bounties
 
 - Scroll: the dApp is deployed on Scroll network and takes advantage of its zkRollups to be cheap, secure, fast and decentralized.
+Sepolia Scroll Address: 0x526922E0426d0705eCa8ace5dF50399654657bE0
 - Near Protocol: The BOS allows the frontend to be decentralized and fully open source, while providing a good and smooth user experience.
+Near Component Link: https://near.org/armsveshack.near/widget/ScrollMessenger

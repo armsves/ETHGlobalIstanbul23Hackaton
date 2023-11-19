@@ -59,14 +59,49 @@ const messages = [
   },
 ];
 
-/*
+State.init({
+  tmess: []
+});
+
+const tmess2 = []
+
 const wEthContract = new ethers.Contract(contractAddress, abi.body.result, Ethers.provider().getSigner());
 wEthContract.readMessages(sender).then((transactionHash) => {
   transactionHash.map((item, index) => (
-    console.log('mensaje: '+item)
-      ))
+    //console.log('mensaje: '+ item[3])
+    tmess2.push(['sender', item[0]]),
+    tmess2.push(['receiver', item[1]]),
+    tmess2.push(['timestamp', item[2]]),
+    tmess2.push(['message', item[3]]),
+
+    //activities.push(['Study',2]);
+    //tmess[index][receiver].push(item[1])
+    //tmess[index][timestamp].push(item[2])
+    //tmess[index][message].push(item[3])
+    //State.update({ tmess: item[0] }) //este funciona
+    //State.update({ tmess: item[0] })
+    //State.update({ tmess[index][sender]: item[0] })
+    console.log(tmess2)
+    //State.update({ tmess: tmess2 })
+
+    ))
 });
-*/
+
+//console.log('tmess '+state.tmess);
+
+const handleSend = () => {
+  wEthContract
+  .sendMessage("0x00f02f3a111D452C0DFbF576f09A4003b2F18284", state.text)
+  .then((transactionHash) => {
+      console.log(transactionHash);
+  });
+}
+
+const updateText = (e) => {
+  State.update({ text: e.target.value });
+};
+
+
 const getSender = () => {
   return !state.sender
     ? ""
@@ -86,7 +121,9 @@ const hour = (unix_timestamp) => {
   var minutes = "0" + date.getMinutes();
   var formattedTime = hours + ':' + minutes.substr(-2);
   return formattedTime
-};
+}
+
+
 
 return (
   <Theme>
@@ -174,11 +211,10 @@ return (
           })
           }
         </div>
-        <div class="chatbox-input">
-          <i class="fa-regular fa-face-grin"></i>
-          <i class="fa-sharp fa-solid fa-paperclip"></i>
-          <input type="text" placeholder="Type a message" />
-          <i class="fa-solid fa-microphone"></i>
+        <div class="chatbox-input" style={{ padding: '10px' }}>
+
+          <input type="text" onChange={updateText} placeholder="Type a message" />
+          <button onClick={handleSend}>Send</button>
         </div>
       </div>
     </div>
