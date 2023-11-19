@@ -1,1 +1,0 @@
-# ETHGlobalIstanbul23Hackaton
