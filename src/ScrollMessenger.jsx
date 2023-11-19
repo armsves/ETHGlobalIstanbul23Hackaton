@@ -16,6 +16,9 @@ if (!state.theme) {
 }
 const Theme = state.theme;
 
+const receiver = Ethers.send("eth_requestAccounts", [])[0];
+if (!receiver) { return <Web3Connect />; }
+
 if (state.sender === undefined) {
   const accounts = Ethers.send("eth_requestAccounts", []);
   if (accounts.length) {
@@ -94,7 +97,7 @@ return (
           <div class="nav-icons">
           {state.sender ? ( <li> { prettyAddress(state.sender) }</li>) : ('')}
           <li>
-            {!state.sender ? ( <Web3Connect connectLabel="Connect Wallet" />) : (<Web3Connect disconnectLabel="Disconnect"/>) }
+           <Web3Connect disconnectLabel="Disconnect" />
         </li>
           </div>
         </div>
